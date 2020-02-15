@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+/* .game {
+    height: 720px;
+    background-image: url(../images/back.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 1100px;
+} */
+
+.background {
+    position: absolute;
+    height: 650px;
+}
+
+.person {
+    height: 45px;
+    position: relative;
+    top: 530px;
+}
+
+.player-1 {
+    left: 80px;
+}
+
+.red-koopa {
+    left: 150px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.blocked {
+    pointer-events: none;
+}
