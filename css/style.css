@@ -4,17 +4,29 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: black;
+@font-face {
+    font-family: "Super-Mario-World";
+    src: url("Super-Mario-World.ttf");
 }
 
-/* .game {
-    height: 720px;
-    background-image: url(../images/back.png);
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 1100px;
-} */
+body {
+    background-color: black;
+    font-family: 'Super-Mario-World', Verdana, sans-serif;
+}
+
+.dialog {
+    position: relative;
+    background-color: black;
+    padding: 20px;
+    width: 200px;
+    color: white;
+    font-size: 0.7em;
+}
+
+.interaction {
+    position: relative;
+    height: 30px;
+}
 
 .background {
     position: absolute;
@@ -27,12 +39,27 @@ body {
     top: 530px;
 }
 
-.player-1 {
+.player {
     left: 80px;
 }
 
 .red-koopa {
     left: 150px;
+}
+
+.talk-red-koopa {
+    top: 490px;
+    left: 50px;
+}
+
+.grab-red-koopa {
+    top: 490px;
+    left: 145px;
+}
+
+.dialog-red-koopa {
+    top: 330px;
+    left: 120px;
 }
 
 .invisible {
