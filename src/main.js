@@ -8,15 +8,13 @@
 //     }
 // }}
 
-class Problem {
-    constructor(name, player) {
+class Interactable {
+    constructor(name) {
         this.name = name;
         this.dialogs = this.createDialogs();
         this.dialogIndex = 0;
         this.left = getComputedStyle(document.querySelector(`.${this.name}`)).left;
         this.top = getComputedStyle(document.querySelector(`.${this.name}`)).top;
-        this.solved = false;
-        this.player = player;
 
         document.querySelector(`.${this.name}`).onclick = () => {
             this.movePlayerToProblem();
@@ -38,6 +36,9 @@ class Problem {
                 dialogs.push('Ah, percebeu que é melhor resolver as coisas com diálogo?');
                 dialogs.push('Fico feliz que tenhamos nos acertado, tome minha bengala como recompensa!');
                 break;
+            case 'yoshi':
+                dialogs.push('Mario! Você por aqui!');
+                dialogs.push('Estou morrendo de fome, mas as frutas que sobraram estão tão altas.');
         }
         return dialogs;
     };
@@ -46,6 +47,9 @@ class Problem {
         switch (this.name) {
             case 'red-koopa':
                 this.showDialog('Se tentar pular em mim, eu vou te deitar na porrada!');
+                break;
+            case 'yoshi':
+                this.showDialog('Não estou afim de cavalgar Mario, estou com fome!');
                 break;
         }
         this.hideInteractions();
@@ -73,17 +77,6 @@ class Problem {
         dialog.innerText = text;
     };
 
-    checkProblemSolved = () => {
-        switch (this.name) {
-            case 'red-koopa':
-                if (this.dialogIndex === this.dialogs.length-1) {
-                    this.solved = true;
-                    this.player.itens.push('bengala');
-                }
-                break;
-        }
-    };
-
     hideInteractions = () => {
         document.querySelector(`.grab-${this.name}`).classList.add('invisible');
         document.querySelector(`.talk-${this.name}`).classList.add('invisible');
@@ -92,31 +85,83 @@ class Problem {
     hideDialogs = () => {
         document.querySelectorAll('.dialog').forEach((e) => e.classList.add('invisible'));
     }
+}
+
+class Problem extends Interactable {
+    constructor(name, player) {
+        super(name);
+        this.solved = false;
+        this.player = player;
+    }
+
+    checkProblemSolved = () => {
+        switch (this.name) {
+            case 'red-koopa':
+                if (this.dialogIndex === this.dialogs.length - 1) {
+                    this.solved = true;
+                    this.player.addItem('stick');
+                }
+                break;
+        }
+    };
 
 }
 
 class Player {
     constructor() {
         this.itens = [];
+        this.selectedItem;
+
+        document.querySelector('.inventory-icon').onclick = () => {
+            this.showInventory();
+        }
     }
+
+    addItem = (item) => {
+        this.itens.push(item);
+        document.querySelector(`.inventory-${item}`).classList.remove('invisible');
+    }
+
+    removeItem = (item) => {
+        this.itens = this.itens.filter((e) => e !== item);
+        document.querySelector(`.inventory-${item}`).classList.add('invisible');
+    }
+
+    showInventory = () => {
+        document.querySelector('.inventory').classList.remove('invisible');
+    };
 }
 
 class Game {
     constructor(player) {
         this.player = player;
-        this.enemies = this.createEnemies();
+        this.problems = this.createProblems();
+
+        setInterval(() => {
+            this.checkGameOver();
+        }, 1000);
     }
 
-    createEnemies = () => {
+    createProblems = () => {
         return [
             new Problem('red-koopa', this.player),//koopa nervoso com o mario, deve conversar com ele até que ele de um graveto para ele
-            // new Problem('yoshi'),//yoshi esta com fome e mario deve usar a vara para pegar a fruta e dar pra ele, ganhando uma chave
+            new Problem('yoshi'),//yoshi esta com fome e mario deve usar a vara para pegar a fruta e dar pra ele, ganhando uma chave
             // new Problem('jocker'),//jocker está sem sua bola de futebol, mario deve achar e devolver
         ]
     };
 
     checkGameOver = () => {
-        //se todos os problemas estiverem resolvidos, a porta do castelo fica disponível para clique
+        if (this.problems.every((e) => e.solved)) {
+            let castleDoor = document.querySelector('.castle-open');
+            castleDoor.classList.remove('invisible');
+            castleDoor.onclick = () => {
+                this.endGame()
+            };
+        }
+    }
+
+    endGame = () => {
+        console.log('Ganhoooooou');
     }
 
 }
@@ -127,6 +172,7 @@ window.onload = () => {
     document.querySelector('.background').onclick = () => {
         document.querySelectorAll('.interaction').forEach((e) => e.classList.add('invisible'));
         document.querySelectorAll('.dialog').forEach((e) => e.classList.add('invisible'));
+        document.querySelector('.inventory').classList.add('invisible');
     };
 };
 

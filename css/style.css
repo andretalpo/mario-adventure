@@ -15,7 +15,7 @@ body {
 }
 
 .dialog {
-    position: relative;
+    position: absolute;
     background-color: black;
     padding: 20px;
     width: 200px;
@@ -24,8 +24,15 @@ body {
 }
 
 .interaction {
-    position: relative;
+    position: absolute;
     height: 30px;
+}
+
+.inventory-icon {
+    position: absolute;
+    height: 40px;
+    top: 600px;
+    left: 1050px;
 }
 
 .background {
@@ -33,33 +40,106 @@ body {
     height: 650px;
 }
 
-.person {
-    height: 45px;
-    position: relative;
-    top: 530px;
+.inventory {
+    position: absolute;
+    background-color: black;
+    left: 100px;
+    top: 100px;
+    height: 500px;
+    width: 900px;
+}
+
+.container {
+    padding: 30px;
+}
+
+.inventory-item {
+    padding: 30px;
+}
+
+.inventory-stick {
+    width: 90px;
 }
 
 .player {
+    position: absolute;
+    height: 45px;
     left: 80px;
+    top: 531px;
 }
 
 .red-koopa {
-    left: 150px;
+    position: absolute;
+    height: 53px;
+    left: 180px;
+    top: 526px;
 }
 
 .talk-red-koopa {
     top: 490px;
-    left: 50px;
+    left: 140px;
 }
 
 .grab-red-koopa {
     top: 490px;
-    left: 145px;
+    left: 210px;
 }
 
 .dialog-red-koopa {
-    top: 330px;
-    left: 120px;
+    top: 380px;
+    left: 110px;
+}
+
+.pipe {
+    position: absolute;
+    height: 100px;
+    top: 473px;
+    left: 240px;
+}
+
+.yoshi {
+    position: absolute;
+    height: 60px;
+    top: 519px;
+    left: 344px;
+}
+
+.talk-yoshi {
+    top: 490px;
+    left: 315px;
+}
+
+.grab-yoshi {
+    top: 490px;
+    left: 390px;
+}
+
+.dialog-yoshi {
+    top: 380px;
+    left: 282px;
+}
+
+.fruit {
+    position: absolute;
+    height: 30px;
+    top: 469px;
+    left: 538px;
+}
+
+.castle {
+    position: absolute;
+    left: 960px;
+    top: 393px;
+    height: 200px;
+}
+
+.castle-open {
+    position: absolute;
+    background-color: black;
+    left: 996px;
+    top: 524px;
+    height: 54px;
+    width: 56px;
 }
 
 .invisible {
