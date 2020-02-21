@@ -51,6 +51,8 @@ body {
 
 .container {
     padding: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .inventory-item {
@@ -59,6 +61,10 @@ body {
 
 .inventory-stick {
     width: 90px;
+}
+
+.inventory-fruit {
+    height: 102px;
 }
 
 .player {
@@ -124,6 +130,65 @@ body {
     height: 30px;
     top: 469px;
     left: 538px;
+}
+
+.talk-fruit {
+    top: 430px;
+    left: 500px;
+}
+
+.grab-fruit {
+    top: 430px;
+    left: 579px;
+}
+
+.dialog-fruit {
+    top: 385px;
+    left: 463px;
+}
+
+.jocker {
+    position: absolute;
+    height: 40px;
+    top: 533px;
+    left: 784px;
+}
+
+.talk-jocker {
+    top: 493px;
+    left: 750px;
+}
+
+.grab-jocker {
+    top: 493px;
+    left: 825px;
+}
+
+.dialog-jocker {
+    top: 407px;
+    left: 702px;
+}
+
+.half-ball {
+    position: absolute;
+    height: 10px;
+    top: 563px;
+    left: 310px;
+}
+
+.talk-half-ball {
+    top: 523px;
+    left: 267px;
+}
+
+.grab-half-ball {
+    top: 523px;
+    left: 324px;
+}
+
+.dialog-half-ball {
+    top: 448px;
+    left: 214px;
 }
 
 .castle {
