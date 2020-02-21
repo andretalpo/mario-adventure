@@ -67,6 +67,14 @@ body {
     height: 102px;
 }
 
+.inventory-pow {
+    height: 102px;
+}
+
+.inventory-ball {
+    height: 100px;
+}
+
 .player {
     position: absolute;
     height: 45px;

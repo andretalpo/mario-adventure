@@ -70,6 +70,16 @@ class Interactable {
                 } else {
                     this.showDialog('A fruta está alta demais. Quem sabe um cogumelo ajude');
                 }
+                break;
+            case 'jocker':
+                if (this.player.selectedItem !== 'ball') {
+                    this.showDialog('Uma trombada comigo sem o equipamento necessário pode ser fatal');
+                }
+                break;
+            case 'half-ball':
+                this.player.addItem('ball');
+                document.querySelector('.half-ball').classList.add('invisible');
+                break;
         }
         this.hideInteractions();
         if (this.constructor.name === 'Problem') this.checkProblemSolved();
@@ -111,21 +121,36 @@ class Problem extends Interactable {
     }
 
     checkProblemSolved = () => {
-        switch (this.name) {
-            case 'red-koopa':
-                if (this.dialogIndex === this.dialogs.length - 1) {
-                    this.solved = true;
-                    this.player.addItem('stick');
-                }
-                break;
-            case 'yoshi':
-                if (this.player.selectedItem === 'fruit') {
-                    this.solved = true;
-                    this.dialogs = [];
-                    this.dialogs.push('Obrigado amigo! Você é um amigo!');
-                    this.dialogIndex = 0;
-                    this.showDialog('Obrigado amigo! Você é um amigo!');
-                }
+        if (!this.solved) {
+            switch (this.name) {
+                case 'red-koopa':
+                    if (this.dialogIndex === this.dialogs.length - 1) {
+                        this.solved = true;
+                        this.player.addItem('stick');
+                    }
+                    break;
+                case 'yoshi':
+                    if (this.player.selectedItem === 'fruit') {
+                        this.solved = true;
+                        this.dialogs = [];
+                        this.dialogs.push('Obrigado amigo! Você é um amigo!');
+                        this.dialogIndex = 0;
+                        this.showDialog('Obrigado amigo! Você é um amigo!');
+                        this.player.addItem('pow');
+                        this.player.selectedItem = undefined;
+                    }
+                    break;
+                case 'jocker':
+                    if (this.player.selectedItem === 'ball') {
+                        this.solved = true;
+                        this.dialogs = [];
+                        this.dialogs.push('Nossa, você encontrou! Não faço ideia onde poderia estar.');
+                        this.dialogIndex = 0;
+                        this.showDialog('Nossa, você encontrou! Não faço ideia onde poderia estar. Tome sua chave!');
+                        // this.player.addItem('key');
+                        this.player.selectedItem = undefined;
+                    }
+            }
         }
     };
 
@@ -180,7 +205,7 @@ class Game {
         return [
             new Problem('red-koopa', this.player),
             new Problem('yoshi', this.player),
-            // new Problem('jocker', this.player),
+            new Problem('jocker', this.player),
         ];
     };
 
