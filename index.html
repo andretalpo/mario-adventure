@@ -10,9 +10,13 @@
 </head>
 
 <body>
-    <div class="game">
+    <div class="title-screen">
+        <img class="title" src="images/logo.png" alt="logo">
+        <h1>Adventure</h1>
+        <button onclick=start() class="start-button">Here we go!</button>
+    </div>
+    <div class="game-screen invisible">
         <img class="background" src="images/back.png" alt="Background">
-        <img class="player" src="images/small-mario.png" alt="Small Mario">
         <img class="red-koopa" src="images/red-koopa.png" alt="Red Koopa">
         <img class="pipe" src="images/pipe.png" alt="pipe">
         <img class="yoshi" src="images/yoshi.png" alt="yoshi">
@@ -22,6 +26,19 @@
         <img class="inventory-icon" src="images/item.png" alt="inventory icon">
         <img class="castle" src="images/castle.png" alt="castle">
         <div class="castle-open invisible"></div>
+        <img class="block1 block invisible" src="images/block.png" alt="block">
+        <img class="block2 block invisible" src="images/block.png" alt="block">
+        <img class="block3 block invisible" src="images/block.png" alt="block">
+        <img class="block4 block invisible" src="images/block.png" alt="block">
+        <img class="block5 block invisible" src="images/block.png" alt="block">
+        <img class="block6 block invisible" src="images/block.png" alt="block">
+        <img class="block7 block invisible" src="images/block.png" alt="block">
+        <img class="block8 block invisible" src="images/block.png" alt="block">
+        <img class="block9 block invisible" src="images/block.png" alt="block">
+        <img class="block10 block invisible" src="images/block.png" alt="block">
+        <img class="block11 block invisible" src="images/block.png" alt="block">
+        <img class="key-hole invisible" src="images/key-hole.png" alt="key hole">
+        <img class="player" src="images/small-mario.png" alt="Small Mario">
         <img class="interaction grab-red-koopa invisible" src="images/grab.png" alt="Hand">
         <img class="interaction talk-red-koopa invisible" src="images/talk.png" alt="Talk baloon">
         <p class="dialog dialog-red-koopa invisible"></p>
@@ -37,14 +54,29 @@
         <img class="interaction grab-half-ball invisible" src="images/grab.png" alt="Hand">
         <img class="interaction talk-half-ball invisible" src="images/talk.png" alt="Talk baloon">
         <p class="dialog dialog-half-ball invisible"></p>
+        <img class="interaction grab-castle invisible" src="images/grab.png" alt="Hand">
+        <img class="interaction talk-castle invisible" src="images/talk.png" alt="Talk baloon">
+        <p class="dialog dialog-castle invisible"></p>
+        <img class="interaction grab-key-hole invisible" src="images/grab.png" alt="Hand">
+        <img class="interaction talk-key-hole invisible" src="images/talk.png" alt="Talk baloon">
+        <p class="dialog dialog-key-hole invisible"></p>
         <div class="inventory invisible">
             <div class="container">
                 <img class="inventory-stick inventory-item invisible" src="images/stick.png" alt="Wooden stick">
                 <img class="inventory-fruit inventory-item invisible" src="images/fruit.png" alt="fruit">
                 <img class="inventory-ball inventory-item invisible" src="images/ball.png" alt="ball">
+                <img class="inventory-key inventory-item invisible" src="images/key.png" alt="key">
                 <img class="inventory-pow inventory-item invisible" src="images/pow.png" alt="pow">
             </div>
         </div>
+    </div>
+    <div class="bad-ending-screen invisible">
+        <h2>A princesa está em outro castelo!</h2>
+        <div>
+            <img class="ending-mario" src="images/small-mario.png" alt="mario">
+            <img class="ending-toad" src="images/toad.png" alt="toad">
+        </div>
+        <button onclick=window.location.reload(); class="start-button">Jogar de novo</button>
     </div>
 </body>
 

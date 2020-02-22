@@ -9,9 +9,68 @@
     src: url("Super-Mario-World.ttf");
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-    background-color: black;
+    /* background-color: black; */
+    background-image: url(../images/background-general.png);
     font-family: 'Super-Mario-World', Verdana, sans-serif;
+}
+
+.title-screen {
+    height: 100%;
+    text-align: center;
+    background-image: url(../images/tittle-screen.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bad-ending-screen {
+    height: 100%;
+    font-size: 1.4em;
+    color: white;
+    text-align: center;
+    background-color: black;
+    padding: 100px;
+}
+
+.ending-toad {
+    height: 98px;
+}
+
+.ending-mario {
+    height: 73px;
+}
+
+.bad-ending-screen>div {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    margin-top: 100px;
+    height: 200px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.start-button {
+    margin-top: 100px;
+    font-family: 'Super-Mario-World', Verdana, sans-serif;
+    font-size: 1em;
+    color: blanchedalmond;
+    background-color: rgb(206, 25, 25);
+    border: 3px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px black;
 }
 
 .dialog {
@@ -75,11 +134,15 @@ body {
     height: 100px;
 }
 
+.inventory-key {
+    height: 100px;
+}
+
 .player {
     position: absolute;
     height: 45px;
     left: 80px;
-    top: 531px;
+    top: 530px;
 }
 
 .red-koopa {
@@ -202,7 +265,7 @@ body {
 .castle {
     position: absolute;
     left: 960px;
-    top: 393px;
+    top: 389px;
     height: 200px;
 }
 
@@ -210,13 +273,95 @@ body {
     position: absolute;
     background-color: black;
     left: 996px;
-    top: 524px;
+    top: 520px;
     height: 54px;
     width: 56px;
 }
 
+.talk-castle {
+    top: 484px;
+    left: 959px;
+}
+
+.grab-castle {
+    top: 484px;
+    left: 1048px;
+}
+
+.dialog-castle {
+    top: 412px;
+    left: 910px;
+}
+
+.block {
+    position: absolute;
+    height: 30px;
+}
+
+.block1 {
+    top: 345px;
+    left: 951px;
+}
+
+.block2 {
+    top: 345px;
+    left: 923px;
+}
+
+.block3 {
+    top: 345px;
+    left: 895px;
+}
+
+.block4 {
+    top: 370px;
+    left: 870px;
+}
+
+.block5 {
+    top: 395px;
+    left: 845px;
+}
+
+.block6 {
+    top: 420px;
+    left: 820px;
+}
+
+.block7 {
+    top: 445px;
+    left: 795px;
+}
+
+.block8 {
+    top: 470px;
+    left: 770px;
+}
+
+.block9 {
+    top: 495px;
+    left: 745px;
+}
+
+.block10 {
+    top: 520px;
+    left: 720px;
+}
+
+.block11 {
+    top: 545px;
+    left: 695px;
+}
+
+.key-hole {
+    position: absolute;
+    left: 957px;
+    top: 320px;
+    height: 30px;
+}
+
 .invisible {
-    visibility: hidden;
+    display: none;
 }
 
 .blocked {

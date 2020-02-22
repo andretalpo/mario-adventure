@@ -1,13 +1,3 @@
-// renderPerson() {
-//     let image = new Image();
-//     image.src = './images/small-mario.png';
-//     image.onload = () => {
-//         let body = document.querySelector('body');
-//         body.insertBefore(image, body.childNodes[0])
-
-//     }
-// }}
-
 class Interactable {
     constructor(name, player) {
         this.name = name;
@@ -19,7 +9,8 @@ class Interactable {
 
         document.querySelector(`.${this.name}`).onclick = () => {
             this.movePlayerToProblem();
-            this.hideDialogs();
+            hideDialogs();
+            hideInteractions();
             document.querySelector(`.grab-${this.name}`).classList.remove('invisible');
             document.querySelector(`.grab-${this.name}`).onclick = () => this.grab();
             document.querySelector(`.talk-${this.name}`).classList.remove('invisible');
@@ -54,47 +45,64 @@ class Interactable {
     };
 
     grab = () => {
-        switch (this.name) {
-            case 'red-koopa':
-                this.showDialog('Se tentar pular em mim, eu vou te deitar na porrada!');
-                break;
-            case 'yoshi':
-                if (this.player.selectedItem !== 'fruit') {
-                    this.showDialog('Não estou afim de cavalgar Mario, estou com fome!');
-                }
-                break;
-            case 'fruit':
-                if (this.player.selectedItem === 'stick') {
-                    this.player.addItem('fruit');
-                    document.querySelector('.fruit').classList.add('invisible');
-                } else {
-                    this.showDialog('A fruta está alta demais. Quem sabe um cogumelo ajude');
-                }
-                break;
-            case 'jocker':
-                if (this.player.selectedItem !== 'ball') {
-                    this.showDialog('Uma trombada comigo sem o equipamento necessário pode ser fatal');
-                }
-                break;
-            case 'half-ball':
-                this.player.addItem('ball');
-                document.querySelector('.half-ball').classList.add('invisible');
-                break;
+        if (this.player.selectedItem === 'pow') {
+            document.querySelectorAll('.block').forEach((e) => e.classList.remove('invisible'));
+            document.querySelector('.key-hole').classList.remove('invisible');
+        } else {
+
+            switch (this.name) {
+                case 'red-koopa':
+                    this.showDialog('Se tentar pular em mim, eu vou te deitar na porrada!');
+                    break;
+                case 'yoshi':
+                    if (this.player.selectedItem !== 'fruit') {
+                        this.showDialog('Não estou afim de cavalgar Mario, estou com fome!');
+                    }
+                    break;
+                case 'fruit':
+                    if (this.player.selectedItem === 'stick') {
+                        this.player.addItem('fruit');
+                        document.querySelector('.fruit').classList.add('invisible');
+                    } else {
+                        this.showDialog('A fruta está alta demais. Quem sabe um cogumelo ajude');
+                    }
+                    break;
+                case 'jocker':
+                    if (this.player.selectedItem !== 'ball') {
+                        this.showDialog('Uma trombada comigo sem o equipamento necessário pode ser fatal');
+                    }
+                    break;
+                case 'half-ball':
+                    this.player.addItem('ball');
+                    document.querySelector('.half-ball').classList.add('invisible');
+                    break;
+                case 'castle':
+                    if (this.player.selectedItem !== 'key') {
+                        if (this.solved) {
+                            this.showDialog('A porta está aberta.');
+                        } else {
+                            this.showDialog('A porta está trancada.');
+                        }
+                    }
+                    break;
+            }
         }
-        this.hideInteractions();
+        hideInteractions();
         if (this.constructor.name === 'Problem') this.checkProblemSolved();
+        this.player.selectedItem = undefined;
     };
 
     talk = () => {
         this.showDialog(this.dialogs[this.dialogIndex]);
         if (this.constructor.name === 'Problem') this.checkProblemSolved();
         if (this.dialogIndex < this.dialogs.length - 1) this.dialogIndex++;
-        this.hideInteractions();
+        hideInteractions();
     };
 
     movePlayerToProblem = () => {
         let player = document.querySelector('.player');
-        player.style.left = this.left;
+        const numberLeft = Number(this.left.match(/\d+/gi));
+        player.style.left = numberLeft - 35 + "px";
         // player.style.top = this.top;
     };
 
@@ -103,15 +111,6 @@ class Interactable {
         dialog.classList.remove('invisible');
         dialog.innerText = text;
     };
-
-    hideInteractions = () => {
-        document.querySelector(`.grab-${this.name}`).classList.add('invisible');
-        document.querySelector(`.talk-${this.name}`).classList.add('invisible');
-    }
-
-    hideDialogs = () => {
-        document.querySelectorAll('.dialog').forEach((e) => e.classList.add('invisible'));
-    }
 }
 
 class Problem extends Interactable {
@@ -138,6 +137,7 @@ class Problem extends Interactable {
                         this.showDialog('Obrigado amigo! Você é um amigo!');
                         this.player.addItem('pow');
                         this.player.selectedItem = undefined;
+                        this.player.removeItem('fruit');
                     }
                     break;
                 case 'jocker':
@@ -147,8 +147,20 @@ class Problem extends Interactable {
                         this.dialogs.push('Nossa, você encontrou! Não faço ideia onde poderia estar.');
                         this.dialogIndex = 0;
                         this.showDialog('Nossa, você encontrou! Não faço ideia onde poderia estar. Tome sua chave!');
-                        // this.player.addItem('key');
+                        this.player.addItem('key');
                         this.player.selectedItem = undefined;
+                        this.player.removeItem('ball');
+                    }
+                    break;
+                case 'castle':
+                    if (this.player.selectedItem === 'key') {
+                        this.solved = true;
+                        this.player.selectedItem = undefined;
+                        this.player.removeItem('key');
+                        document.querySelector('.castle-open').classList.remove('invisible');
+                        document.querySelector('.castle-open').onclick = () => {
+                            this.showDialog("Você não pode sair, ainda tem assuntos a resolver!");
+                        };
                     }
             }
         }
@@ -162,7 +174,7 @@ class Player {
         this.selectedItem;
 
         document.querySelector('.inventory-icon').onclick = () => {
-            this.showInventory();
+            this.toggleInventory();
         }
     }
 
@@ -172,7 +184,7 @@ class Player {
         itemIcon.classList.remove('invisible');
         itemIcon.onclick = () => {
             this.selectedItem = item;
-            this.hideInventory();
+            hideInventory();
         };
     }
 
@@ -181,13 +193,9 @@ class Player {
         document.querySelector(`.inventory-${item}`).classList.add('invisible');
     }
 
-    showInventory = () => {
-        document.querySelector('.inventory').classList.remove('invisible');
+    toggleInventory = () => {
+        document.querySelector('.inventory').classList.toggle('invisible');
     };
-
-    hideInventory = () => {
-        document.querySelector('.inventory').classList.add('invisible');
-    }
 }
 
 class Game {
@@ -206,6 +214,7 @@ class Game {
             new Problem('red-koopa', this.player),
             new Problem('yoshi', this.player),
             new Problem('jocker', this.player),
+            new Problem('castle', this.player),
         ];
     };
 
@@ -218,27 +227,48 @@ class Game {
 
     checkGameOver = () => {
         if (this.problems.every((e) => e.solved)) {
-            let castleDoor = document.querySelector('.castle-open');
-            castleDoor.classList.remove('invisible');
-            castleDoor.onclick = () => {
-                this.endGame()
+            document.querySelector('.castle-open').onclick = () => {
+                document.querySelector('.game-screen').classList.add('invisible');
+                document.querySelector('.bad-ending-screen').classList.remove('invisible');
             };
         }
     }
 
-    endGame = () => {
-        console.log('Ganhoooooou');
-    }
+}
 
+start = () => {
+    document.querySelector('.title-screen').classList.toggle('invisible');
+    document.querySelector('.game-screen').classList.toggle('invisible');
 }
 
 window.onload = () => {
     const player = new Player();
     new Game(player);
     document.querySelector('.background').onclick = () => {
-        document.querySelectorAll('.interaction').forEach((e) => e.classList.add('invisible'));
-        document.querySelectorAll('.dialog').forEach((e) => e.classList.add('invisible'));
-        document.querySelector('.inventory').classList.add('invisible');
+        hideAll();
     };
+    document.onkeydown = (e) => {
+        if (e.keyCode === 27) {
+            hideAll();
+        }
+    }
 };
 
+hideAll = () => {
+    hideInteractions();
+    hideDialogs();
+    hideInventory();
+}
+
+hideInteractions = () => {
+    document.querySelectorAll('.interaction').forEach((e) => e.classList.add('invisible'));
+}
+
+
+hideDialogs = () => {
+    document.querySelectorAll('.dialog').forEach((e) => e.classList.add('invisible'));
+}
+
+hideInventory = () => {
+    document.querySelector('.inventory').classList.add('invisible');
+}
