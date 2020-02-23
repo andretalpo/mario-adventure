@@ -1,6 +1,6 @@
 # Super Mario Adventure
 
-This is a point and click game, making reference to the classic Super Mario World from SNES.
+This is a point and click game making reference to the classic Super Mario World from SNES.
 
 ## Getting Started
 
