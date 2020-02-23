@@ -26,15 +26,27 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.title {
+    width: 300px;
 }
 
 .ending-screen {
     height: 100%;
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: white;
     text-align: center;
     background-color: black;
     padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .ending-toad {
@@ -50,23 +62,16 @@ body {
 }
 
 .ending-screen>div {
-    margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.title {
-    margin-top: 100px;
-    height: 200px;
-}
-
 h1 {
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .start-button {
-    margin-top: 100px;
     font-family: 'Super-Mario-World', Verdana, sans-serif;
     font-size: 1em;
     color: blanchedalmond;
@@ -75,6 +80,7 @@ h1 {
     border-radius: 3px;
     padding: 10px;
     box-shadow: 3px 3px 3px black;
+    width: max-content;
 }
 
 .dialog {

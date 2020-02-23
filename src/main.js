@@ -50,7 +50,6 @@ class Interactable {
             document.querySelector('.key-hole').classList.remove('invisible');
             this.player.removeItem('pow');
         } else {
-
             switch (this.name) {
                 case 'red-koopa':
                     this.showDialog('Se tentar pular em mim, eu vou te deitar na porrada!');
