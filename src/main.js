@@ -48,6 +48,7 @@ class Interactable {
         if (this.player.selectedItem === 'pow') {
             document.querySelectorAll('.block').forEach((e) => e.classList.remove('invisible'));
             document.querySelector('.key-hole').classList.remove('invisible');
+            this.player.removeItem('pow');
         } else {
 
             switch (this.name) {
