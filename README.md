@@ -6,7 +6,7 @@ This is a point and click game making reference to the classic Super Mario World
 
 This game runs at the browser and does not need any installation.
 
-Click [HERE] to play(https://andretalpo.github.io/mario-adventure/).
+Click here to play: https://andretalpo.github.io/mario-adventure/
 
 ## Prerequisites
 
