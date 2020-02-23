@@ -20,9 +20,9 @@ You control Mario and, as in most Mario games, you're after princess Peach. Your
 
 This is a point and click game, wich means you just have to click on things to play. 
 
-When you click on something with interactions, the talk and grab icons will appear. You can click on then to interact.
+When you click on something with interactions, the talk and grab icons will appear. You can click then to interact.
 
-At the bottom of the screen, on the right side, there is a "?" block. This is Mario's inventory, all the itens you get ends up there.
+At the bottom of the screen, on the right side, there is a "?" block. This is Mario's inventory, all the itens you get ends there.
 
 When you click on some iten at your inventory, this item will be selected and can be used to interact with other things.
 
