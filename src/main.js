@@ -85,6 +85,13 @@ class Interactable {
                         }
                     }
                     break;
+                case 'key-hole':
+                    if (this.player.selectedItem === 'key') {
+                        document.querySelector('.game-screen').classList.add('invisible');
+                        document.querySelector('.good-ending-screen').classList.remove('invisible');
+                    } else {
+                        this.showDialog('As vezes, quando você olha para o vazio, ele olha de volta.');
+                    }
             }
         }
         hideInteractions();
@@ -222,6 +229,7 @@ class Game {
         return [
             new Interactable('fruit', this.player),
             new Interactable('half-ball', this.player),
+            new Interactable('key-hole', this.player),
         ];
     };
 

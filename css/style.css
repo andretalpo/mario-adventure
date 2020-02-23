@@ -28,7 +28,7 @@ body {
     background-size: cover;
 }
 
-.bad-ending-screen {
+.ending-screen {
     height: 100%;
     font-size: 1.4em;
     color: white;
@@ -42,10 +42,14 @@ body {
 }
 
 .ending-mario {
-    height: 73px;
+    height: 75px;
 }
 
-.bad-ending-screen>div {
+.ending-peach {
+    height: 100px;
+}
+
+.ending-screen>div {
     margin-top: 100px;
     display: flex;
     align-items: center;
@@ -291,6 +295,21 @@ h1 {
 .dialog-castle {
     top: 412px;
     left: 910px;
+}
+
+.talk-key-hole {
+    top: 291px;
+    left: 919px;
+}
+
+.grab-key-hole {
+    top: 291px;
+    left: 979px;
+}
+
+.dialog-key-hole {
+    top: 241px;
+    left: 867px;
 }
 
 .block {
