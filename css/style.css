@@ -112,10 +112,21 @@ h1 {
 .inventory {
     position: absolute;
     background-color: black;
+    top: 600px;
+    left: 1050px;
+    height: 0px;
+    width: 0px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.transition-open-inventory {
+    transition: 0.5s;
     left: 100px;
     top: 100px;
     height: 500px;
     width: 900px;
+    opacity: 1;
 }
 
 .container {

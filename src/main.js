@@ -39,7 +39,7 @@ class Interactable {
                 dialogs.push('Perdi minha bola, se puder encontrá-la, a chave é sua.');
                 break;
             default:
-                dialogs.push('Você é encarado em silêncio.');
+                dialogs.push('Nenhuma resposta.');
         }
         return dialogs;
     };
@@ -201,7 +201,8 @@ class Player {
     }
 
     toggleInventory = () => {
-        document.querySelector('.inventory').classList.toggle('invisible');
+        document.querySelector('.container').classList.toggle('invisible');
+        document.querySelector('.inventory').classList.toggle('transition-open-inventory');
     };
 }
 
@@ -278,5 +279,6 @@ hideDialogs = () => {
 }
 
 hideInventory = () => {
-    document.querySelector('.inventory').classList.add('invisible');
+    document.querySelector('.container').classList.add('invisible');
+    document.querySelector('.inventory').classList.remove('transition-open-inventory');
 }
