@@ -396,6 +396,22 @@ h1 {
     height: 30px;
 }
 
+.key-hole-dot {
+    position: absolute;
+    left: 957px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.transition-castle-open {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: 1s;
+    border-radius: 0px;
+}
+
 .invisible {
     display: none;
 }

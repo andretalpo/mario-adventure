@@ -87,8 +87,11 @@ class Interactable {
                     break;
                 case 'key-hole':
                     if (this.player.selectedItem === 'key') {
-                        document.querySelector('.game-screen').classList.add('invisible');
-                        document.querySelector('.good-ending-screen').classList.remove('invisible');
+                        document.querySelector('.key-hole-dot').classList.add('transition-castle-open');
+                        setTimeout(() => {
+                            document.querySelector('.game-screen').classList.add('invisible');
+                            document.querySelector('.good-ending-screen').classList.remove('invisible');
+                        }, 1000);
                     } else {
                         this.showDialog('As vezes, quando você olha para o vazio, ele olha de volta.');
                     }
@@ -139,9 +142,9 @@ class Problem extends Interactable {
                     if (this.player.selectedItem === 'fruit') {
                         this.solved = true;
                         this.dialogs = [];
-                        this.dialogs.push('Obrigado amigo! Você é um amigo!');
+                        this.dialogs.push('Obrigado Mario! Você é um amigo!');
                         this.dialogIndex = 0;
-                        this.showDialog('Obrigado amigo! Você é um amigo!');
+                        this.showDialog('Obrigado Mario! Você é um amigo!');
                         this.player.addItem('pow');
                         this.player.selectedItem = undefined;
                         this.player.removeItem('fruit');
@@ -169,6 +172,7 @@ class Problem extends Interactable {
                             this.showDialog("Você não pode sair, ainda tem assuntos a resolver!");
                         };
                     }
+                    break;
             }
         }
     };
@@ -236,9 +240,13 @@ class Game {
 
     checkGameOver = () => {
         if (this.problems.every((e) => e.solved)) {
-            document.querySelector('.castle-open').onclick = () => {
-                document.querySelector('.game-screen').classList.add('invisible');
-                document.querySelector('.bad-ending-screen').classList.remove('invisible');
+            document.querySelector('.castle-open').onclick = (e) => {
+                e.target.classList.add('transition-castle-open');
+                setTimeout(() => {
+                    document.querySelector('.game-screen').classList.add('invisible');
+                    document.querySelector('.bad-ending-screen').classList.remove('invisible');
+                }, 1000);
+
             };
         }
     }
