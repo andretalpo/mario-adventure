@@ -179,7 +179,7 @@ h1 {
 .player {
     position: absolute;
     height: 45px;
-    left: 80px;
+    left: 36px;
     top: 530px;
 }
 
@@ -298,6 +298,83 @@ h1 {
 .dialog-half-ball {
     top: 448px;
     left: 214px;
+}
+
+.fly-koopa {
+    position: absolute;
+    height: 38px;
+    top: 72px;
+    left: -100px;
+}
+
+.hole {
+    position: absolute;
+    height: 36px;
+    top: 602px;
+    left: 631px;
+}
+
+.sign {
+    position: absolute;
+    height: 40px;
+    top: 536px;
+    left: 101px;
+}
+
+.moon {
+    position: absolute;
+    height: 35px;
+    top: 167px;
+    left: 713px;
+}
+
+.teeth1 {
+    position: absolute;
+    height: 35px;
+    top: 193px;
+    left: 711px;
+}
+
+.teeth2 {
+    position: absolute;
+    height: 35px;
+    top: 193px;
+    left: 683px;
+}
+
+.teeth3 {
+    position: absolute;
+    height: 35px;
+    top: 193px;
+    left: 655px;
+}
+
+.teeth4 {
+    position: absolute;
+    height: 35px;
+    top: 193px;
+    left: 627px;
+}
+
+.bullet {
+    position: absolute;
+    height: 89px;
+    top: 250px;
+    left: 1022px;
+}
+
+.rod {
+    position: absolute;
+    height: 130px;
+    top: 185px;
+    left: 127px;
+}
+
+.plant {
+    position: absolute;
+    height: 42px;
+    top: 500px;
+    left: 258px;
 }
 
 .castle {
@@ -438,6 +515,68 @@ h1 {
 
 .blocked {
     pointer-events: none;
+}
+
+.animate-fly-koopa {
+    animation-name: animation-fly-koopa;
+    animation-duration: 6s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation-fly-koopa {
+    0% {}
+    99% {
+        opacity: 1;
+    }
+    100% {
+        left: 1050px;
+        opacity: 0;
+    }
+}
+
+.animate-bullet {
+    animation-name: animation-bullet;
+    animation-duration: 4s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes animation-bullet {
+    0% {}
+    100% {
+        left: -100px;
+    }
+}
+
+.animate-rod {
+    animation-name: animation-rod;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation-rod {
+    0% {
+        transform: rotate(0deg) translate(-20px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translate(-20px) rotate(-360deg);
+    }
+}
+
+.animate-plant {
+    animation-name: animation-plant;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes animation-plant {
+    0% {}
+    100% {
+        top: 350px;
+    }
 }
 
 @keyframes animation-obtained-item {

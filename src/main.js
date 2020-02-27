@@ -283,9 +283,6 @@ class Game {
 start = () => {
     document.querySelector('.title-screen').classList.toggle('invisible');
     document.querySelector('.game-screen').classList.toggle('invisible');
-}
-
-window.onload = () => {
     const player = new Player();
     new Game(player);
     document.querySelector('.background').onclick = () => {
@@ -296,7 +293,8 @@ window.onload = () => {
             hideAll();
         }
     }
-};
+    animateStuff();
+}
 
 hideAll = () => {
     hideInteractions();
@@ -316,4 +314,12 @@ hideDialogs = () => {
 hideInventory = () => {
     document.querySelector('.container').classList.add('invisible');
     document.querySelector('.inventory').classList.remove('transition-open-inventory');
+}
+
+animateStuff = () => {
+    document.querySelector('.fly-koopa').classList.add('animate-fly-koopa');
+    document.querySelector('.bullet').classList.add('animate-bullet');
+    document.querySelector('.rod').classList.add('animate-rod');
+    document.querySelector('.plant').classList.add('animate-plant');
+    setTimeout(() => document.querySelector('.bullet').classList.add('invisible'), 3950);
 }
