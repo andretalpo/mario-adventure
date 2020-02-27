@@ -33,10 +33,11 @@ class Interactable {
                 dialogs.push('Estou morrendo de fome, mas as frutas que sobraram estão tão altas.');
                 break;
             case 'jocker':
-                dialogs.push('Não tenho tempo pra você.');
-                dialogs.push('Ora, saia daqui!');
+                dialogs.push('Gosta de futebol? Eu só falo com quem gosta de futebol.');
+                dialogs.push('Também gosto de jogar futebol, mas minha bola desapareceu.');
+                dialogs.push('Se eu achar o ladrão...');
                 dialogs.push('Quer entrar no castelo? Eu tenho a chave, mas preciso de um favor.');
-                dialogs.push('Perdi minha bola, se puder encontrá-la, a chave é sua.');
+                dialogs.push('Se puder encontrar minha bola, a chave é sua.');
                 break;
             default:
                 dialogs.push('Nenhuma resposta.');
@@ -87,7 +88,7 @@ class Interactable {
                     break;
                 case 'key-hole':
                     if (this.player.selectedItem === 'key') {
-                        document.querySelector('.key-hole-dot').classList.add('transition-castle-open');
+                        document.querySelector('.key-hole-dot').classList.add('transition-ending');
                         setTimeout(() => {
                             document.querySelector('.game-screen').classList.add('invisible');
                             document.querySelector('.good-ending-screen').classList.remove('invisible');
@@ -191,10 +192,12 @@ class Player {
 
     addItem = (item) => {
         this.itens.push(item);
+        this.renderObtainedItem(item);
         let itemIcon = document.querySelector(`.inventory-${item}`);
         itemIcon.classList.remove('invisible');
         itemIcon.onclick = () => {
             this.selectedItem = item;
+            this.renderSelectedItem();
             hideInventory();
         };
     }
@@ -207,6 +210,30 @@ class Player {
     toggleInventory = () => {
         document.querySelector('.container').classList.toggle('invisible');
         document.querySelector('.inventory').classList.toggle('transition-open-inventory');
+    };
+
+    renderSelectedItem = () => {
+        let image = new Image();
+        image.src = `images/${this.selectedItem}.png`;
+        image.style.height = '40px';
+        document.querySelector('.selected-item').childNodes.forEach((e) => e.remove());
+        document.querySelector('.selected-item').appendChild(image);
+    };
+
+    renderObtainedItem = (item) => {
+        let image = new Image();
+        image.src = `images/${item}.png`;
+        image.style.height = '40px';
+
+        let obtainedItem = document.querySelector('.obtained-item');
+        obtainedItem.style.top = getComputedStyle(document.querySelector('.player')).top;
+        obtainedItem.style.left = getComputedStyle(document.querySelector('.player')).left;
+        obtainedItem.childNodes.forEach((e) => e.remove());
+        obtainedItem.appendChild(image);
+        
+        obtainedItem.classList.remove('invisible');
+        obtainedItem.classList.add('animated-obtained-item');
+        setTimeout(() => obtainedItem.classList.add('invisible'), 1200);
     };
 }
 
@@ -241,7 +268,7 @@ class Game {
     checkGameOver = () => {
         if (this.problems.every((e) => e.solved)) {
             document.querySelector('.castle-open').onclick = (e) => {
-                e.target.classList.add('transition-castle-open');
+                e.target.classList.add('transition-ending');
                 setTimeout(() => {
                     document.querySelector('.game-screen').classList.add('invisible');
                     document.querySelector('.bad-ending-screen').classList.remove('invisible');

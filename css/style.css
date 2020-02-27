@@ -104,6 +104,23 @@ h1 {
     left: 1050px;
 }
 
+.selected-item {
+    position: absolute;
+    top: 600px;
+    left: 996px;
+}
+
+.obtained-item {
+    position: absolute;
+}
+
+.animated-obtained-item {
+    animation-name: animation-obtained-item;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 200ms;
+}
+
 .background {
     position: absolute;
     height: 650px;
@@ -399,17 +416,20 @@ h1 {
 .key-hole-dot {
     position: absolute;
     left: 957px;
+    top: 320px;
     background-color: black;
+    height: 0px;
+    width: 0px;
     border-radius: 50%;
 }
 
-.transition-castle-open {
+.transition-ending {
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     transition: 1s;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .invisible {
@@ -418,4 +438,12 @@ h1 {
 
 .blocked {
     pointer-events: none;
+}
+
+@keyframes animation-obtained-item {
+    0% {}
+    100% {
+        top: 600px;
+        left: 1050px;
+    }
 }
